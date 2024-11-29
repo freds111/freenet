@@ -8,14 +8,117 @@
 
 
 ### روش تنظیم برنامه برای گوشی
-- ابتدا محتویات کانفیگ را به طور کامل کپی کنید، سپس وارد برنامه شده و دکمه بعلاوه در بالا را بزنید. سپس گزینه Import config from clipboard را بزنید. در صورت نیاز این کار را تکرار کنید.
+- ابتدا محتویات یک کانفیگ را به طور کامل کپی کنید، سپس وارد برنامه شده و دکمه بعلاوه در بالا را بزنید. سپس گزینه Import config from clipboard را بزنید. در صورت نیاز این کار را برای کانفیگ‌های دیگر تکرار کنید.
 - برای اتصال به هر کانفیگ آن را انتخاب کرده و دکمه اتصال را بزنید.
 - ![image](https://github.com/user-attachments/assets/4115fd84-1e60-46e4-953e-1a45eb873d7e)
 
 
 
-### تنظیمات تکمیلی
-- برای اتصال همزمان به سایت‌های داخلی، این بخش بعدا بروز می‌شود.
+### تنظیمات تکمیلی(اتصال همزمان به سایت‌های داخلی)
+- با انجام این تنظیم ترافیک سایت‌های داخلی مستقیم می‌شود و دیگر نیاز به خاموش کردن برنامه برای دسترسی به سایت‌های داخلی ندارید.
+- ابتدا طبق تصویر زیر وارد بخش تنظیمات شده و ۳ تیک مربوطه را روشن کنید.(توجه: تغییر سایر تنظیمات ممکن است باعث عدم عملکرد برنامه شود)
+- ![image](https://github.com/user-attachments/assets/1a25920c-33c2-4ca6-930c-3318f1892679)
+- حالا تنظیمات زیر را با کلیک بر روی دکمه دو-مربع کپی کنید
+```
+[
+  {
+    "port": "",
+    "outboundTag": "direct",
+    "ip": [
+      "geoip:private"
+    ],
+    "domain": [
+      "geosite:private"
+    ],
+    "process": [],
+    "enabled": true,
+    "remarks": "Bypass Local IP/Domain"
+  },
+  {
+    "port": "",
+    "outboundTag": "direct",
+    "ip": [],
+    "domain": [],
+    "protocol": [
+      "bittorrent"
+    ],
+    "process": [],
+    "enabled": true,
+    "remarks": "Bypass Bittorrent"
+  },
+  {
+    "port": "",
+    "outboundTag": "direct",
+    "ip": [
+      "117.50.60.30",
+      "52.80.60.30"
+    ],
+    "domain": [],
+    "process": [],
+    "enabled": false,
+    "remarks": "Bypass Special IPs(Sample)"
+  },
+  {
+    "port": "",
+    "outboundTag": "block",
+    "ip": [],
+    "domain": [
+      "geosite:category-ads-all"
+    ],
+    "process": [],
+    "enabled": true,
+    "remarks": "Block Ads"
+  },
+  {
+    "port": "",
+    "outboundTag": "direct",
+    "ip": [],
+    "domain": [
+      "domain:doh.pub",
+      "domain:onedns.net"
+    ],
+    "process": [],
+    "enabled": false,
+    "remarks": "Bypass Iran/ISP Public DNS"
+  },
+  {
+    "port": "",
+    "outboundTag": "direct",
+    "ip": [
+      "geoip:ir"
+    ],
+    "domain": [
+	  "geosite:category-ir",
+      "regexp:.+.ir$"
+    ],
+    "process": [],
+    "enabled": true,
+    "remarks": "Bypass Iran IP/Domains"
+  },
+  {
+    "port": "443",
+    "Network": "udp",
+    "outboundTag": "block",
+    "ip": [],
+    "domain": [],
+    "process": [],
+    "enabled": false,
+    "remarks": "Block UDP 443(Disabled)"
+  },
+  {
+    "port": "0-65535",
+    "outboundTag": "proxy",
+    "ip": [],
+    "domain": [],
+    "process": [],
+    "enabled": true,
+    "remarks": "Final Agent"
+  }
+]
+```
+- حالا مطابق با تصویر زیر وارد تنظیمات Routing Settings شوید و کد کپی شده را وارد کنید.
+- ![image](https://github.com/user-attachments/assets/ac7c0878-5d95-4543-87f5-d57b251e31aa)
+- حالا برای اعمال تنظیمات یکبار اتصال را خاموش و روشن کنید. سپس جهت اطمینان از عملکرد تنظیمات یک سایت داخلی مانند time.ir را باز کنید، اگر باز شد یعنی تنظیمات به درستی کار می‌کند.
 
 
 
@@ -29,8 +132,9 @@
 
 
 ### تنظیمات تکمیلی
-- برای اتصال همزمان به سایت‌های داخلی، ابتدا محتویات زیر را بطور کامل کپی کنید. سپس وارد بخش تنظیمات شوید و بعد Routing setting را بزنید. سپس دکمه Advanced function و بعد گزینه Add را بزنید. حالا گزینه Import rules from clipboard را بزنید تا تنظیمات وارد شود. حالا از بخش بالا و در قسمت Remarks نام Iran Rules را وارد و دکمه تایید را بزنید. سپس تنظیم وارد شده را انتخاب و دکمه enter را بزنید تا به رنگ آبی در آمده و فعال شود.
+- برای اتصال همزمان به سایت‌های داخلی، ابتدا محتویات پایین را با کلیک بر روی دکمه دو-مربع بطور کامل کپی کنید. سپس وارد بخش تنظیمات شوید و بعد Routing setting را بزنید. سپس دکمه Advanced function و بعد گزینه Add را بزنید. حالا گزینه Import rules from clipboard را بزنید تا تنظیمات وارد شود. حالا از بخش بالا و در قسمت Remarks نام Iran Rules را وارد و دکمه تایید را بزنید. سپس تنظیم وارد شده را انتخاب و دکمه enter را بزنید تا به رنگ آبی در آمده و فعال شود.
 - ![image](https://github.com/user-attachments/assets/ad360543-b182-4e3a-8254-c1531a28a00c)
+
 
 
 ```
